@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Database Viewer</title>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+    <style>
+     
+    </style>
+    
+    <div class="container mt-4">
+        <h1 class="text-center">My Database</h1>
+        <button class="btn btn-primary" onclick="exportToCSV()">Export to CSV</button>
+        <table class="table table-bordered">
+            <thead class="thead-light">
+                <tr>
+                    <th>ID</th>
+                    <th>Date</th>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Subject</th>
+                    <th>Details</th>
+                    <th>Follow-up</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in data %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ item.date }}</td>
+                    <td>{{ item.from_person }}</td>
+                    <td>{{ item.to_person }}</td>
+                    <td>{{ item.subject }}</td>
+                    <td>{{ item.details }}</td>
+                    <td>{{ item.followup }}</td>
+                </tr>
+                {% endfor %}
+        </table>
+    </div>
+    <style>
+        .btn-primary{
+            
+        position: relative;
+        
+     }
+    </style>
+    <script>
+        function exportToCSV() {
+            const rows = document.querySelectorAll('table tr');
+            const csvContent = Array.from(rows)
+                .map(row => Array.from(row.children).map(cell => cell.textContent).join(','))
+                .join('\n');
+
+            const blob = new Blob([csvContent], { type: 'text/csv' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'mydata.csv';
+            a.click();
+        }
+    </script>
+    <style>
+        body {
+            background-color: #f9f9f9;
+        }
+
+        h1 {
+            color: #333;
+        }
+        th,td{
+            text-transform: capitalize;
+        }
+        button{
+            text-align: center;
+        }
+    </style>
+
+    <!-- Include Bootstrap JS (optional) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inter-Office Memo</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <form action="/" method="post">
+        
+        <div class="header">
+            <h1 class="h1">Mojopanda Exim Private Limited</h1>
+        </div>
+        <div class="container mt-5 memo-container">
+            <div class="memo-header">
+                Date: <input type="date" name="date" id="memo-date" class="memo-input" required>
+            </div>
+            <h2 class="text-center">Inter Office Memo</h2>
+            From: <select id="employees" class="memo-input" name="from" required>
+                <option value="SUSHANTO MITTRA (MANAGING DIRECTOR)">SUSHANTO MITTRA (MANAGING DIRECTOR)</option>
+                <option value="KANTA GIRI (DIRECTOR)">KANTA GIRI (DIRECTOR)</option>
+                <option value="VIPIN KUMAR (MANAGER)">VIPIN KUMAR (MANAGER)</option>
+                <option value="ABHISHEK KUMAR (MERCHANDISER)">ABHISHEK KUMAR (MERCHANDISER)</option>
+                <option value="POOJA (HR)">POOJA (HR)</option>
+                <option value="VINAY (ACCOUNTANT)">VINAY (ACCOUNTANT)</option>
+                <option value="NITISH (EXECUTIVE)">NITISH (EXECUTIVE)</option>
+            </select>
+
+            TO: <select id="recipient" name="to" class="memo-input" required>
+                <option value="">Select</option>
+                <option value="MPE-0123 Abdul Kalam Khan"> <span>MPE-0123</span> Abdul Kalam Khan</option>
+                <option value="MPE-0103 Abhishek Mittal"> <span>MPE-0103</span> Abhishek Mittal</option>
+                <option value="MPE-0113 Akash"> <span>MPE-0113</span> Akash</option>
+                <option value="MPE-0127 Arabaz Khan"> <span>MPE-0127</span> Arabaz Khan</option>
+                <option value="MPE-0128 Dewanshu"> <span>MPE-0128</span> Dewanshu</option>
+                <option value="MPE-0116 Jainder Singh Bhandari"> <span>MPE-0116</span> Jainder Singh Bhandari</option>
+                <option value="MPE-0093 Kamlesh Singh"> <span>MPE-0093</span> Kamlesh Singh</option>
+                <option value="MPE-0029 Kanta Giri"> <span>MPE-0029</span> Kanta Giri</option>
+                <option value="MPE-0096 Kavita"> <span>MPE-0096</span> Kavita</option>
+                <option value="MPE-0125 Mandeep Kumar Mishra"> <span>MPE-0125</span> Mandeep Kumar Mishra</option>
+                <option value="MPE-0072 Mohan Singh"> <span>MPE-0072</span> Mohan Singh</option>
+                <option value="MPE-0102 Neeraj Kumar"> <span>MPE-0102</span> Neeraj Kumar</option>
+                <option value="MPE-0002 Nilam Devi"> <span>MPE-0002</span> Nilam Devi</option>
+                <option value="MPE-0118 Nitish Sharma"> <span>MPE-0118</span> Nitish Sharma</option>
+                <option value="MPE-0115 Pooja"> <span>MPE-0115</span> Pooja</option>
+                <option value="MPE-0112 Protap Chandra Dey"> <span>MPE-0112</span> Protap Chandra Dey</option>
+                <option value="MPE-0121 Sami Ullah Bhat"> <span>MPE-0121</span> Sami Ullah Bhat</option>
+                <option value="MPE-0129 Shubham Tyagi"> <span>MPE-0129</span> Shubham Tyagi</option>
+                <option value="MPE-0130 Susmita Modak"> <span>MPE-0130</span> Susmita Modak</option>
+                <option value="MPE-0009 Tota Singh"> <span>MPE-0009</span> Tota Singh</option>
+                <option value="MPE-0126 Vikas"> <span>MPE-0126</span> Vikas</option>
+                <option value="MPE-0094 Vinay Kumar Gupta"> <span>MPE-0094</span> Vinay Kumar Gupta</option>
+                <option value="MPE-0012 Vipin Kumar"> <span>MPE-0012</span> Vipin Kumar</option>
+            </select>
+
+            <p>Subject: <input type="text" name="subject" id="subject" class="memo-input" placeholder=" Subject"
+                    required></p>
+            <hr>
+            <p><textarea id="message" name="details" class="memo-textarea" rows="5" placeholder="Details"
+                    required></textarea></p>
+            <p><textarea id="message" name="followup" class="memo-textarea" rows="5" placeholder="Follow up"
+                    required></textarea></p>
+    </form>
+
+    <button type="submit" class="memo-button">Send Memo</button>
+    </div>
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top footers">
+        <div class="col-md-4 d-flex align-items-center">
+          <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+            <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
+          </a>
+          <span class="text-muted">© 2024 Company, Inc</span>
+        </div>
+        <a href="https://mandeep.pythonanywhere.com/" class="text-muted m-3">Developer © 2024</a>
+      </footer>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

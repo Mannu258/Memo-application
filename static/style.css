@@ -1,0 +1,115 @@
+body {
+    background-color: #9da4de;
+}
+
+#memo-date {
+
+    position: relative;
+    width: 130px;
+
+}
+
+.memo-container {
+    max-width: 600px;
+    margin: 10px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    font-family: Arial, sans-serif;
+}
+
+.memo-header {
+    text-align: right;
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 10px;
+
+
+}
+
+.memo-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.memo-textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    resize: vertical;
+    margin-bottom: 15px;
+}
+
+.memo-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.memo-button:hover {
+    background-color: #0056b3;
+}
+
+select {
+    text-transform: uppercase;
+}
+
+h2 {
+    text-transform: uppercase;
+}
+
+
+/* style.css */
+
+/* Overall container styling */
+.memo-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+
+.memo-button:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 480px) {
+    .memo-container {
+        max-width: 100%;
+    }
+}
+
+.header {
+    margin: 10px;
+    height: 100px;
+    width: 100%;
+    position: relative;
+    text-align: center;
+    margin-top: 30px;
+    font-weight: 800;
+    
+}
+
+body {
+    background-image: url("logo/header.png");
+    overflow-x: hidden;
+
+}
+.footers{
+    background-color: #f9f9f9;
+}
