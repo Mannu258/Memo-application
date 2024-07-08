@@ -10,8 +10,8 @@ app.config["SECRET_KEY"] = "1234"
 app.config["MAIL_SERVER"] = "smtp.gmail.com"
 app.config["MAIL_PORT"] = 587
 app.config["MAIL_USE_TLS"] = True
-app.config["MAIL_USERNAME"] = "no-reply@mojopanda.com"
-app.config["MAIL_PASSWORD"] = "aemk ciga tjxn rzlq"
+app.config["MAIL_USERNAME"] = "adlaadepoker@gmail.com"
+app.config["MAIL_PASSWORD"] = "fwro mqzv xaiv csvt"
 
 db = SQLAlchemy(app)
 mail = Mail(app)
@@ -113,7 +113,7 @@ def home():
             to_person=TO,
             subject=subject,
             details=details,
-            followup=followup,
+            followup=followup
         )
         db.session.add(memo)
         db.session.commit()
@@ -122,7 +122,7 @@ def home():
         try:
             msg = Message(
                 subject,
-                sender="No-reply@mojopanda.com",
+                sender="adlaadepoker@gmail.com",
                 recipients=["sm@mojopanda.com", f"{first}", f"{second}"],
             )
             # msg = Message(subject, sender='No-reply@mojopanda.com', recipients=[f"mishramandeep@outlook.com"])
@@ -148,8 +148,8 @@ def Admin():
             username=username, password=password
         ).first()
         if admi:
-            details = Memo.query.order_by(Memo.id.desc()).all()
-            return render_template("Database.html", details=details)
+            data = Memo.query.order_by(Memo.id.desc()).all()
+            return render_template("Database.html", data=data)
         else:
             return render_template("login.html")
 
