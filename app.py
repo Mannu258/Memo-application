@@ -26,6 +26,13 @@ class Memo(db.Model):
     details = db.Column(db.Text, nullable=False)
     followup = db.Column(db.String(100), nullable=True)
 
+class Crediantials(db.Model):
+    ID = db.Column(db.Integer,primary_key=True)
+    username = db.Column(db.String(200),nullable=False)
+    password = db.Column(db.String(200),nullable=False)
+    def __repr__(self) -> str:
+        return f"{self.username}"
+
 # Create the database tables
 with app.app_context():
     db.create_all()
@@ -117,10 +124,19 @@ def home():
     return render_template('index.html')
 
 
-@app.route('/database', methods=['GET'])
-def database():
-    data = Memo.query.order_by(Memo.id.desc()).all()
-    return render_template('Database.html', data=data)
+@app.route("/administrator",methods=['POST','GET'])
+def Admin():
+    if request.method == "POST":
+        username = request.form['Username']
+        password = request.form['password']
+        admi = Crediantials.query.filter_by(username=username,password=password).first()
+        if admi:
+            details = Memo.query.order_by(Memo.id.desc()).all()
+            return render_template('Database.html',details=details)
+        else:
+            return render_template('login.html')
+
+    return render_template('login.html')
 
 
 if __name__ == '__main__':
