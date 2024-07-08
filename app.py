@@ -10,8 +10,8 @@ app.config["SECRET_KEY"] = "1234"
 app.config["MAIL_SERVER"] = "smtp.gmail.com"
 app.config["MAIL_PORT"] = 587
 app.config["MAIL_USE_TLS"] = True
-app.config["MAIL_USERNAME"] = "adlaadepoker@gmail.com"
-app.config["MAIL_PASSWORD"] = "fwro mqzv xaiv csvt"
+app.config["MAIL_USERNAME"] = "No-reply@mojopanda.com"
+app.config["MAIL_PASSWORD"] = "ekzr xoxk cmli cefa"
 
 db = SQLAlchemy(app)
 mail = Mail(app)
@@ -122,7 +122,7 @@ def home():
         try:
             msg = Message(
                 subject,
-                sender="adlaadepoker@gmail.com",
+                sender="No-reply@mojopanda.com",
                 recipients=["sm@mojopanda.com", f"{first}", f"{second}"],
             )
             # msg = Message(subject, sender='No-reply@mojopanda.com', recipients=[f"mishramandeep@outlook.com"])
