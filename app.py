@@ -94,7 +94,7 @@ def home():
         elif TO == "MPE-0096 Kavita":
             second = "hr@mojopanda.com"
         elif TO == "MPE-0125 Mandeep Kumar Mishra":
-            second = "mishramandeep@outlook.com"
+            second = "mandeep_mis@mojopanda.com"
         elif TO == "MPE-0072 Mohan Singh":
             second = "hr@mojopanda.com"
         elif TO == "MPE-0102 Neeraj Kumar":
