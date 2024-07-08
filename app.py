@@ -5,16 +5,17 @@ from flask_mail import Mail, Message
 app = Flask(__name__)
 
 # Configure the SQLite database
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///sqlite3.db'
-app.config['SECRET_KEY'] = '1234'
-app.config['MAIL_SERVER'] = 'smtp.gmail.com'
-app.config['MAIL_PORT'] = 587
-app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USERNAME'] = 'no-reply@mojopanda.com'
-app.config['MAIL_PASSWORD'] = 'aemk ciga tjxn rzlq'
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///sqlite3.db"
+app.config["SECRET_KEY"] = "1234"
+app.config["MAIL_SERVER"] = "smtp.gmail.com"
+app.config["MAIL_PORT"] = 587
+app.config["MAIL_USE_TLS"] = True
+app.config["MAIL_USERNAME"] = "no-reply@mojopanda.com"
+app.config["MAIL_PASSWORD"] = "aemk ciga tjxn rzlq"
 
 db = SQLAlchemy(app)
 mail = Mail(app)
+
 
 # Define your database model
 class Memo(db.Model):
@@ -26,32 +27,35 @@ class Memo(db.Model):
     details = db.Column(db.Text, nullable=False)
     followup = db.Column(db.String(100), nullable=True)
 
+
 class Crediantials(db.Model):
-    ID = db.Column(db.Integer,primary_key=True)
-    username = db.Column(db.String(200),nullable=False)
-    password = db.Column(db.String(200),nullable=False)
+    ID = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(200), nullable=False)
+    password = db.Column(db.String(200), nullable=False)
+
     def __repr__(self) -> str:
         return f"{self.username}"
+
 
 # Create the database tables
 with app.app_context():
     db.create_all()
 
+
 # Define your routes
-@app.route('/', methods=['POST', 'GET'])
+@app.route("/", methods=["POST", "GET"])
 def home():
-    if request.method == 'POST':
+    if request.method == "POST":
         # Retrieve form data
-        date = request.form.get('date')
-        From = request.form.get('from')
-        TO = request.form.get('to')
-        subject = request.form.get('subject')
-        details = request.form.get('details')
-        followup = request.form.get('followup')
+        date = request.form.get("date")
+        From = request.form.get("from")
+        TO = request.form.get("to")
+        subject = request.form.get("subject")
+        details = request.form.get("details")
+        followup = request.form.get("followup")
         # all if else from condition
         first = ""
-        
-    
+
         if From == "SUSHANTO MITTRA (MANAGING DIRECTOR)":
             first = "sm@mojopanda.com"
         elif From == "KANTA GIRI (DIRECTOR)":
@@ -103,13 +107,24 @@ def home():
             second = "hr@mojopanda.com"
         elif TO == "MPE-0112 Protap Chandra Dey":
             second = "hr@mojopanda.com"
-        memo = Memo(date=date, from_person=From, to_person=TO, subject=subject, details=details, followup=followup)
+        memo = Memo(
+            date=date,
+            from_person=From,
+            to_person=TO,
+            subject=subject,
+            details=details,
+            followup=followup,
+        )
         db.session.add(memo)
         db.session.commit()
-        first = "jeemannu90@gmail.com"
-        second = "mandeepkumarmannu123@gmail.com"
+        # first = "jeemannu90@gmail.com"
+        # second = "mandeepkumarmannu123@gmail.com"
         try:
-            msg = Message(subject, sender='No-reply@mojopanda.com', recipients=["mishramandeep@outlook.com",f"{first}",f"{second}"])
+            msg = Message(
+                subject,
+                sender="No-reply@mojopanda.com",
+                recipients=["sm@mojopanda.com", f"{first}", f"{second}"],
+            )
             # msg = Message(subject, sender='No-reply@mojopanda.com', recipients=[f"mishramandeep@outlook.com"])
 
             msg.body = f"Date: {date}\nFrom: {From} (Reporter)\nTo: {TO}\nSubject: {subject}\nDetails: {details}\nFollow-Up: {followup}\n\nDear Employee,\n\nI hope this message finds you well. As part of our ongoing efforts, I wanted to share the following information:\n\n{details}\n\nPlease review and take any necessary actions. If you have any questions or need further clarification, feel free to reach out.\n\nThank you for your attention.\n\nBest regards,\nMojopanda Exim Pvt Ltd"
@@ -119,25 +134,27 @@ def home():
         except Exception as e:
             print(f"An error occurred while sending the email: {e}")
         print(date, From, TO, subject, details, followup)
-        print(first,second)
-        return render_template('thankyou.html')
-    return render_template('index.html')
+        print(first, second)
+        return render_template("thankyou.html")
+    return render_template("index.html")
 
 
-@app.route("/administrator",methods=['POST','GET'])
+@app.route("/administrator", methods=["POST", "GET"])
 def Admin():
     if request.method == "POST":
-        username = request.form['Username']
-        password = request.form['password']
-        admi = Crediantials.query.filter_by(username=username,password=password).first()
+        username = request.form["Username"]
+        password = request.form["password"]
+        admi = Crediantials.query.filter_by(
+            username=username, password=password
+        ).first()
         if admi:
             details = Memo.query.order_by(Memo.id.desc()).all()
-            return render_template('Database.html',details=details)
+            return render_template("Database.html", details=details)
         else:
-            return render_template('login.html')
+            return render_template("login.html")
 
-    return render_template('login.html')
+    return render_template("login.html")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run(debug=True, port=8000)
