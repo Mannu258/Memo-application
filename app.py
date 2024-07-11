@@ -155,6 +155,13 @@ def Admin():
 
     return render_template("login.html")
 
+@app.route("/delete/<int:id>")
+def delete(id):
+    query = Memo.query.filter_by(id=id).first()
+    db.session.delete(query)  # Mark the user for deletion
+    db.session.commit()
+    return f"Memo with ID {id} has been successfully deleted."
+
 
 if __name__ == "__main__":
     app.run(debug=True, port=8000)
