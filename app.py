@@ -108,7 +108,7 @@ def home():
             second = "hr@mojopanda.com"
         elif TO == "MPE-0112 Protap Chandra Dey":
             second = "hr@mojopanda.com"
-        elif TO == "":
+        elif TO == "MPE-0121 Sami Ullah Bhat":
             second = "Project_JK@mojopanda.com"
         memo = Memo(
             date=date,
