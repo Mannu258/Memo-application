@@ -50,21 +50,27 @@
         
      }
     </style>
+    
     <script>
         function exportToCSV() {
             const rows = document.querySelectorAll('table tr');
             const csvContent = Array.from(rows)
-                .map(row => Array.from(row.children).map(cell => cell.textContent).join(','))
-                .join('\n');
+                .map(row => {
+                    const cells = Array.from(row.children);
+                    const rowData = cells.map(cell => `"${cell.textContent.trim().replace(/\n/g, ' ')}"`).join(',');
+                    return rowData;
+                })
+                .join('\n'); // Ensure rows are separated by newlines
 
             const blob = new Blob([csvContent], { type: 'text/csv' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = 'mydata.csv';
+            a.download = 'Mojo-Memo.csv';
             a.click();
         }
     </script>
+
     <style>
         body {
             background-color: #f9f9f9;
